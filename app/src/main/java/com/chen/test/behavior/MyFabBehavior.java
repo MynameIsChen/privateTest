@@ -2,6 +2,7 @@ package com.chen.test.behavior;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
@@ -9,6 +10,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.Interpolator;
+
+import com.chen.common.util.Lg;
 
 /**
  * Created by chenxianglin on 2017/12/11.
@@ -42,11 +45,37 @@ public class MyFabBehavior extends CoordinatorLayout.Behavior<View> {
     public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dx, int dy, int[] consumed) {
         //dy大于0是向上滚动 小于0是向下滚动
 
-        if (dy >= 0 && !isAnimate && child.getVisibility() == View.VISIBLE) {
-            hide(child);
-        } else if (dy < 0 && !isAnimate && child.getVisibility() == View.GONE) {
+//        if (dy >= 0 && !isAnimate && child.getVisibility() == View.VISIBLE) {
+//            hide(child);
+//        } else if (dy < 0 && !isAnimate && child.getVisibility() == View.GONE) {
+//            show(child);
+//        }
+    }
+
+    @Override
+    public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {
+        return dependency instanceof AppBarLayout;
+    }
+
+    private float top;
+
+    @Override
+    public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
+        float translationY = dependency.getTop();//获取更随布局的顶部位置
+        if (translationY - top > 0 && !isAnimate && child.getVisibility() == View.GONE) {
+            //向上
             show(child);
+        } else if (translationY - top < 0 && !isAnimate && child.getVisibility() == View.VISIBLE) {
+            //向下
+            hide(child);
         }
+        Lg.d("onDependentViewChanged", "y=" + translationY + "=ScrollY=" + dependency.getScrollY()
+                + "=Y=" + dependency.getY() + "=TranslationY=" + dependency.getTranslationY() + "=PivotY=" + dependency.getPivotY()
+                + "=RotationY=" + dependency.getRotationY());
+//
+//        child.setTranslationY(translationY);
+        top = translationY;
+        return true;
     }
 
     //隐藏时的动画
