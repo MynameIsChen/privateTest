@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.chen.test">
+
+    <!-- 扫码 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.launch.LaunchActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activity.ScrollActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.morelist.MoreListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.ConstraintActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.list.GridActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.TouchActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.stick.StickActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.CoordinatorActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.gallery.GalleryActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.RxActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.thread.ThreadActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.webin.WebInListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".template.hi.HiActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".template.WantActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".template.hi.SeeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".template.saw.SawActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.pro.ProActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.launch.LaunchGridActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".longconnect.LongConnectActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".websocket.SocketActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.PlayerActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.viewpager.ViewPagerActivity"
+            android:screenOrientation="portrait"/>
+
+        <!-- 渠道信息 -->
+        <meta-data
+            android:name="CHANNEL_NAME"
+            android:value="${CHANNEL_VALUE}"/>
+
+        <service android:name=".service.InitService"/>
+        <service android:name=".service.LongConnectService"/>
+    </application>
+
+</manifest>
