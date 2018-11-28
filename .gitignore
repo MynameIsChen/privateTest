@@ -67,3 +67,4 @@ fastlane/readme.md
 .DS_Store
 /build
 /captures
+.idea/
