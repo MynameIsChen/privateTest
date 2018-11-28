@@ -2,20 +2,26 @@ package com.chen.test.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.Unbinder;
+import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by chenxianglin on 2018/1/4.
  * Class note:
  */
 
-public class BaseFragment extends Fragment {
+public class BaseFragment extends SupportFragment {
     protected Unbinder mUnbinder;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initView();
+    }
 
     @Nullable
     @Override

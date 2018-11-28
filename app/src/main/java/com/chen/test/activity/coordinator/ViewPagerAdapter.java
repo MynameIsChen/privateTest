@@ -1,4 +1,4 @@
-package com.chen.test.activity;
+package com.chen.test.activity.coordinator;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

@@ -1,33 +1,32 @@
-package com.chen.test.activity;
+package com.chen.test.activity.coordinator;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 
 import com.chen.test.R;
+import com.chen.test.base.BaseFragment;
+import com.chen.test.databinding.FragmentCoordinator1Binding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
- * Created by chenxianglin on 2017/12/11.
- * Class note:
+ * Description:
+ * Author:Chenxianglin
+ * Date:2018/11/28上午11:48
  */
+public class CoordinatorFragment1 extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, View.OnTouchListener,
+        AppBarLayout.OnOffsetChangedListener, SwipeRefreshLayout.OnChildScrollUpCallback {
+    private FragmentCoordinator1Binding mBinding;
 
-public class CoordinatorActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener, SwipeRefreshLayout.OnRefreshListener, SwipeRefreshLayout.OnChildScrollUpCallback, View.OnTouchListener {
     @BindView(R.id.pager)
     ViewPager mPager;
     @BindView(R.id.app_bar_layout)
@@ -42,25 +41,20 @@ public class CoordinatorActivity extends AppCompatActivity implements AppBarLayo
     private ViewPagerAdapter mAdapter;
     private List<String> mTitles = new ArrayList<>();
 
-    public static void launch(Activity activity) {
-        activity.startActivity(new Intent(activity, CoordinatorActivity.class));
-    }
 
     //实现stick+head+viewPager+RecyclerView效果
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_coordinator);
-        setContentView(R.layout.activity_coordinator2);
-        ButterKnife.bind(this);
-        initView();
+    public static CoordinatorFragment1 newInstance(){
+        return new CoordinatorFragment1();
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
+        mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_coordinator1);
+
         for (int i = 0; i < 5; i++) {
             mTitles.add("I=" + i);
         }
-        mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), mTitles);
+        mAdapter = new ViewPagerAdapter(getChildFragmentManager(), mTitles);
         mPager.setAdapter(mAdapter);
         mRefreshLayout.setEnabled(false);
 //        mBarLayout.addOnOffsetChangedListener(this);
@@ -70,6 +64,7 @@ public class CoordinatorActivity extends AppCompatActivity implements AppBarLayo
         mRefreshLayout.setOnTouchListener(this);//只是不出现动画，但是还是要滑动，所以不能在这儿控制
         mPager.setOnTouchListener(this);
     }
+
 
     private void test1() {
 //        mBtn.setOnTouchListener(new View.OnTouchListener() {
@@ -85,7 +80,6 @@ public class CoordinatorActivity extends AppCompatActivity implements AppBarLayo
 //            }
 //        });
     }
-
     private int barOffset;
 
     @Override
@@ -124,15 +118,5 @@ public class CoordinatorActivity extends AppCompatActivity implements AppBarLayo
         }
 
         return false;
-    }
-
-    public static class TestHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.text)
-        TextView mText;
-
-        public TestHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
     }
 }

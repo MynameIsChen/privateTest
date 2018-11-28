@@ -58,7 +58,7 @@
             android:name=".activity.stick.StickActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.CoordinatorActivity"
+            android:name=".activity.coordinator.CoordinatorActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.gallery.GalleryActivity"

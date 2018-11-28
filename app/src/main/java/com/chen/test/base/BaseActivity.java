@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 
 import com.chen.test.App;
 import com.chen.test.R;
@@ -17,6 +16,9 @@ import com.chen.test.dagger.component.ActivityComponent;
 import com.chen.test.dagger.component.DaggerActivityComponent;
 import com.chen.test.dagger.module.ActivityModule;
 
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import me.yokeyword.fragmentation.SupportActivity;
 import permissions.dispatcher.PermissionRequest;
 
 /**
@@ -24,11 +26,10 @@ import permissions.dispatcher.PermissionRequest;
  * Class note:
  */
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends SupportActivity {
     public String TAG = this.getClass().getSimpleName();
 
-    protected FragmentManager mManager;
-    protected FragmentTransaction mTransaction;
+    private CompositeDisposable mCompositeDisposable;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,12 +52,15 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
+    protected void addDisposable(Disposable d) {
+        if (mCompositeDisposable == null) mCompositeDisposable = new CompositeDisposable();
+        mCompositeDisposable.add(d);
+    }
+
     protected void replaceFragment(Fragment fragment, String name) {
-        mManager = getSupportFragmentManager();
-        mTransaction = mManager.beginTransaction();
-        mTransaction.replace(R.id.fragment, fragment)
-                .addToBackStack(name)
-                .commitAllowingStateLoss();
+        FragmentManager mManager = getSupportFragmentManager();
+        FragmentTransaction mTransaction = mManager.beginTransaction();
+        mTransaction.replace(R.id.fragment, fragment).addToBackStack(name).commitAllowingStateLoss();
     }
 
     protected void showRationaleDialog(@StringRes int messageResId, final PermissionRequest request) {

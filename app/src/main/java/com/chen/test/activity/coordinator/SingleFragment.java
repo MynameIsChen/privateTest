@@ -1,8 +1,7 @@
-package com.chen.test.activity;
+package com.chen.test.activity.coordinator;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chen.test.R;
+import com.chen.test.base.BaseFragment;
+import com.chen.test.holder.CoordinatorHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import butterknife.ButterKnife;
  * Class note:
  */
 
-public class SingleFragment extends Fragment {
+public class SingleFragment extends BaseFragment {
     @BindView(R.id.list)
     RecyclerView mList;
 
@@ -46,18 +47,18 @@ public class SingleFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    private void initView() {
+    protected void initView() {
         for (int i = 0; i < 20; i++) {
             list.add("test" + i);
         }
-        RecyclerView.Adapter adapter = new RecyclerView.Adapter<CoordinatorActivity.TestHolder>() {
+        RecyclerView.Adapter adapter = new RecyclerView.Adapter<CoordinatorHolder>() {
             @Override
-            public CoordinatorActivity.TestHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                return new CoordinatorActivity.TestHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_test, parent, false));
+            public CoordinatorHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                return new CoordinatorHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_test, parent, false));
             }
 
             @Override
-            public void onBindViewHolder(CoordinatorActivity.TestHolder holder, int position) {
+            public void onBindViewHolder(CoordinatorHolder holder, int position) {
                 holder.mText.setText(list.get(position));
             }
 

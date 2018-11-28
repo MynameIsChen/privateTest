@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chen.test.R;
-import com.chen.test.activity.CoordinatorActivity;
+import com.chen.test.activity.coordinator.CoordinatorActivity;
 import com.chen.test.activity.MainActivity;
 import com.chen.test.activity.PlayerActivity;
 import com.chen.test.activity.RxActivity;
