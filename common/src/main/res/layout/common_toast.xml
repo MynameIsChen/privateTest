@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pr_tost_bg_svprogresshuddefault"
+    android:gravity="center"
+    android:minWidth="@dimen/size_minwidth_svprogresshuddefault"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/padding_svprogresshuddefault_top"
+    android:paddingRight="@dimen/padding_svprogresshuddefault_top"
+    android:paddingTop="@dimen/padding_svprogresshuddefault"
+    android:paddingBottom="@dimen/padding_svprogresshuddefault">
+
+    <ImageView
+        android:id="@+id/ivBigLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:scaleType="fitCenter"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tvMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/textSize_svprogresshuddefault_msg"/>
+</LinearLayout>

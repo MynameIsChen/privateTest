@@ -1,58 +1,81 @@
 package com.chen.common.util;
 
-import android.content.Context;
 import android.util.Log;
 
-/**
- * Created by chenxianglin on 2018/6/1.
- * Class note:
- */
-
 public class Lg {
-    private static boolean mDebug = true;
-    private static String TAG = "tag";
+    private static boolean ISSHOW = false;
+    private static String APP_TAG = "网信贷";
+    public Lg() {
+    }
 
-    public void init(Context context) {
-        if (context != null) {
-            TAG = context.getApplicationContext().getPackageName();
+    public static void setDebugMode(boolean isShow) {
+        ISSHOW = isShow;
+    }
+
+    public static void d(String msg) {
+        d("", msg);
+    }
+
+    public static void e(String msg) {
+        e("", msg);
+    }
+
+    public static void i(String msg) {
+        i("", msg);
+    }
+
+    public static void w(String msg) {
+        w("", msg);
+    }
+
+    public static void d(String tag, String msg) {
+        if(ISSHOW) {
+            Log.d(">>>" + APP_TAG + "<<< "+tag, " >> " + msg);
         }
     }
 
-    public static void setTag(String tag) {
-        TAG = tag;
+    public static void e(String tag, String msg) {
+        if(ISSHOW) {
+            Log.e(">>>" + APP_TAG + "<<< "+tag, " >> " + msg);
+        }
+
     }
 
-    public static void setDebug(boolean debug) {
-        mDebug = debug;
+    public static void i(String tag, String msg) {
+        if(ISSHOW) {
+            Log.i(">>>" + APP_TAG + "<<< "+tag, " >> " + msg);
+        }
+
     }
 
-    public void d(String info) {
-        if (mDebug) {
-            Log.d(TAG, info);
+    public static void w(String tag, String msg) {
+        if(ISSHOW) {
+            Log.w(">>>" + APP_TAG + "<<< "+tag, " >> " + msg);
+        }
+
+    }
+
+    public static void w(String tag, String msg, Throwable exc) {
+        if(ISSHOW) {
+            Log.w(">>>" + APP_TAG + "<<< "+tag, " >> " + msg, exc);
         }
     }
 
-    public void w(String info) {
-        if (mDebug) {
-            Log.w(TAG, info);
+    public static void e(String tag, String msg, Throwable exc) {
+        if(ISSHOW) {
+            Log.e(">>>" + APP_TAG + "<<< "+tag, " >> " + msg, exc);
         }
     }
 
-    public void e(String info) {
-        if (mDebug) {
-            Log.e(TAG, info);
+    public static void i(String tag, String msg, Throwable exc) {
+        if(ISSHOW) {
+            Log.i(">>>" + APP_TAG + "<<< "+tag, " >> " + msg, exc);
         }
     }
 
-    public void i(String info) {
-        if (mDebug) {
-            Log.i(TAG, info);
-        }
-    }
-
-    public void v(String info) {
-        if (mDebug) {
-            Log.v(TAG, info);
+    public static void d(String tag, String msg, Object... args) {
+        if(ISSHOW) {
+            Log.d(">>>" + APP_TAG + "<<< " + tag, " >> " + String.format(msg, args));
         }
     }
 }

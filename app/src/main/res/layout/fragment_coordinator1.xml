@@ -9,6 +9,7 @@
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay">
@@ -29,7 +30,7 @@
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/behavior_demo_swipe_refresh"
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">

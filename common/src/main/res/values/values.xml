@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--toast-->
+    <dimen name="radius_svprogresshuddefault">16px</dimen>
+    <dimen name="size_minwidth_svprogresshuddefault">94dp</dimen>
+    <dimen name="padding_svprogresshuddefault_top">20dp</dimen>
+    <dimen name="padding_svprogresshuddefault">10dp</dimen>
+    <dimen name="textSize_svprogresshuddefault_msg">17sp</dimen>
+</resources>

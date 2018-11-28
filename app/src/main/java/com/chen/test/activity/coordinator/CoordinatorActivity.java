@@ -24,7 +24,7 @@ public class CoordinatorActivity extends BaseActivity {
     private CoordinatorFragment1 mFragment1;
     private CoordinatorFragment2 mFragment2;
     private CoordinatorFragment3 mFragment3;
-    private int mCurrentIndex;
+    private int mCurrentIndex = -1;
 
     public static void launch(Activity activity) {
         activity.startActivity(new Intent(activity, CoordinatorActivity.class));
@@ -37,6 +37,7 @@ public class CoordinatorActivity extends BaseActivity {
         addDisposable(RxView.clicks(mBinding.testA).subscribe(o -> loadFragment(0)));
         addDisposable(RxView.clicks(mBinding.testB).subscribe(o -> loadFragment(1)));
         addDisposable(RxView.clicks(mBinding.testC).subscribe(o -> loadFragment(2)));
+        mBinding.testA.performClick();
     }
 
     private void loadFragment(int index) {
@@ -52,20 +53,20 @@ public class CoordinatorActivity extends BaseActivity {
         if (index == 0) {
             if (mFragment1 == null) {
                 mFragment1 = CoordinatorFragment1.newInstance();
+                addFragment(mFragment1);
             }
-            addFragment(mFragment1);
             return mFragment1;
         } else if (index == 1) {
             if (mFragment2 == null) {
                 mFragment2 = CoordinatorFragment2.newInstance();
+                addFragment(mFragment2);
             }
-            addFragment(mFragment2);
             return mFragment2;
         } else if (index == 2) {
             if (mFragment3 == null) {
                 mFragment3 = CoordinatorFragment3.newInstance();
+                addFragment(mFragment3);
             }
-            addFragment(mFragment3);
             return mFragment3;
         }
 
@@ -73,11 +74,9 @@ public class CoordinatorActivity extends BaseActivity {
     }
 
     private void addFragment(BaseFragment fragment) {
-        if (!fragment.isAdded()) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.fragment, fragment);
-            transaction.commitAllowingStateLoss();
-        }
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment, fragment);
+        transaction.commitAllowingStateLoss();
     }
 
 }

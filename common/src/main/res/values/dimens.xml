@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="dialogplus_default_center_margin">16dp</dimen>
+
     <dimen name="dp_0_5">0.5dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_2">2dp</dimen>
@@ -14,6 +16,32 @@
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_11">11dp</dimen>
     <dimen name="dp_12">12dp</dimen>
+    <dimen name="dp_19">19dp</dimen>
+    <dimen name="dp_29">29dp</dimen>
+    <dimen name="dp_35">35dp</dimen>
+    <dimen name="dp_64">64dp</dimen>
     <dimen name="dp_80">80dp</dimen>
+
     <dimen name="sp_14">14sp</dimen>
+
+    <dimen name="text_size_6">6sp</dimen>
+    <dimen name="text_size_7">7sp</dimen>
+    <dimen name="text_size_8">8sp</dimen>
+    <dimen name="text_size_9">9sp</dimen>
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_11">11sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_13">13sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_17">17sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_19">19sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_21">21sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_25">25sp</dimen>
+    <dimen name="text_size_30">30sp</dimen>
+    <dimen name="text_size_40">40sp</dimen>
 </resources>

@@ -4,7 +4,12 @@ import android.app.Application;
 import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.chen.common.util.ExternalFileUtils;
+import com.chen.common.util.Lg;
+import com.chen.common.util.TheCrashUtil;
+import com.chen.common.util.ToastUtil;
 import com.chen.test.base.PreferenceHelper;
+import com.chen.test.constants.AppConstants;
 import com.chen.test.dagger.component.ApplicationComponent;
 import com.chen.test.dagger.component.DaggerApplicationComponent;
 import com.chen.test.dagger.module.ApplicationModule;
@@ -38,13 +43,23 @@ public class App extends Application {
         Stetho.initializeWithDefaults(this);
 
         mApplicationComponent = DaggerApplicationComponent.builder()
-                .netModule(new NetModule(this, "baseUrl"))
+                .netModule(new NetModule(this, AppConstants.HTTP_BASE_URL))
                 .applicationModule(new ApplicationModule())
                 .build();
         /**
          * 实现类的注入
          * */
         mApplicationComponent.inject(this);
+
+
+        //toast
+        ToastUtil.init(this);
+        //create dir
+        ExternalFileUtils.createAppDir();
+        //crash
+        TheCrashUtil.getInstance().init(this);
+        //Lg
+        Lg.setDebugMode(BuildConfig.DEBUG);
 
         initRouter();
     }
