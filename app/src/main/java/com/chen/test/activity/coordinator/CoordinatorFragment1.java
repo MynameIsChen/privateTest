@@ -28,7 +28,9 @@ import java.util.List;
  */
 public class CoordinatorFragment1 extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, View.OnTouchListener,
         AppBarLayout.OnOffsetChangedListener, SwipeRefreshLayout.OnChildScrollUpCallback {
+
     private FragmentCoordinator1Binding mBinding;
+    private CoordinatorWebAdapter mWebAdapter;
     private List<String> list = new ArrayList<>();
     private int barOffset;
 
@@ -71,7 +73,11 @@ public class CoordinatorFragment1 extends BaseFragment implements SwipeRefreshLa
                 return list.size();
             }
         };
+
+        mWebAdapter = new CoordinatorWebAdapter();//test web
+
         mBinding.list.setAdapter(adapter);
+//        mBinding.list.setAdapter(mWebAdapter);//todo web在recyclerView中完全展开
         mBinding.list.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 //        test1();

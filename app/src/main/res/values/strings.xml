@@ -31,4 +31,12 @@
     <!--<string name="permission_camera_denied">Camera permission was denied. Please consider granting it in order to access the camera!</string>-->
     <string name="permission_camera_never_ask_again">Camera permission was denied with never ask again.</string>
 
+
+    <!-- 接口错误信息处理 -->
+    <string name="data_analysis_failed_error">数据解析失败</string>
+    <string name="data_load_failed_error">数据加载失败</string>
+    <string name="network_error">网络异常,请检查您的网络</string>
+    <string name="server_connect_error">服务器连接异常</string>
+    <string name="user_info_error">用户信息异常,请重新登录</string>
+    <string name="network_error_please_try_again">网络异常,请重新操作</string>
 </resources>

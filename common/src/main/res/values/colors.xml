@@ -7,5 +7,6 @@
 
     <color name="dialogplus_card_shadow">#ffD4D4D4</color>
     <color name="dialogplus_black_overlay">#60000000</color>
+    <color name="color_000">#ff000000</color>
 
 </resources>

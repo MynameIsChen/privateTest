@@ -55,7 +55,9 @@ public class WebInListActivity extends BaseActivity {
     private void setData() {
         List<ListItemEntity> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            if (i == 2) {
+            if (i == 1) {
+                list.add(new ListItemEntity(WebInListAdapter.TYPE_WEB, "http://gunuoapi.weiyingjia.org/gunuo/details.html?uid=17&g_id=52"));
+            } else if (i == 2) {
                 list.add(new ListItemEntity(WebInListAdapter.TYPE_WEB, "https://zhidao.baidu.com/question/2011310508679097908.html"));
             } else {
                 list.add(new ListItemEntity(WebInListAdapter.TYPE_ITEM, "i=" + i));

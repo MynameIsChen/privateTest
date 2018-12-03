@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_default_color"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/x5webview_host"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_16"
+        android:textAlignment="center"
+        android:textColor="@color/color_000"
+        android:textSize="@dimen/text_size_12"/>
+
+    <com.tencent.smtt.sdk.WebView
+        android:id="@+id/x5webview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ProgressBar
+        android:id="@+id/x5webview_pg"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:progressDrawable="@drawable/webview_pg"
+        android:visibility="gone"/>
+</RelativeLayout>

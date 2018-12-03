@@ -24,6 +24,7 @@ public class CoordinatorActivity extends BaseActivity {
     private CoordinatorFragment1 mFragment1;
     private CoordinatorFragment2 mFragment2;
     private CoordinatorFragment3 mFragment3;
+    private CoordinatorFragment4 mFragment4;
     private int mCurrentIndex = -1;
 
     public static void launch(Activity activity) {
@@ -37,6 +38,7 @@ public class CoordinatorActivity extends BaseActivity {
         addDisposable(RxView.clicks(mBinding.testA).subscribe(o -> loadFragment(0)));
         addDisposable(RxView.clicks(mBinding.testB).subscribe(o -> loadFragment(1)));
         addDisposable(RxView.clicks(mBinding.testC).subscribe(o -> loadFragment(2)));
+        addDisposable(RxView.clicks(mBinding.testD).subscribe(o -> loadFragment(3)));
         mBinding.testA.performClick();
     }
 
@@ -44,6 +46,7 @@ public class CoordinatorActivity extends BaseActivity {
         mBinding.testA.setSelected(index == 0);
         mBinding.testB.setSelected(index == 1);
         mBinding.testC.setSelected(index == 2);
+        mBinding.testC.setSelected(index == 3);
         if (index == mCurrentIndex) return;
         showHideFragment(getFragment(index));
         mCurrentIndex = index;
@@ -68,6 +71,12 @@ public class CoordinatorActivity extends BaseActivity {
                 addFragment(mFragment3);
             }
             return mFragment3;
+        } else if (index == 3) {
+            if (mFragment4 == null) {
+                mFragment4 = CoordinatorFragment4.newInstance();
+                addFragment(mFragment4);
+            }
+            return mFragment4;
         }
 
         return null;
