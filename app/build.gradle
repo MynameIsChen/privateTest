@@ -155,6 +155,8 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:$rootProject.ext.rxbinding_version"
     /*fragment*/
     implementation "me.yokeyword:fragmentation:$rootProject.ext.fragment_version"
+    /*adapter*/
+    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.ext.adapter_version"
 
 
     implementation project(':common')

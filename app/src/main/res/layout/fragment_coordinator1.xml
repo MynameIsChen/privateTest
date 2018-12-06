@@ -37,7 +37,7 @@
                     android:background="#0000"
                     app:layout_collapseMode="pin"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="wrap_content"/>
             </android.support.design.widget.CollapsingToolbarLayout>
 
             <!--layout_scrollFlags是否试着snap都一样-->

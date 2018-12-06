@@ -13,7 +13,7 @@ import java.io.IOException;
 public class ExternalFileUtils {
     private static final char SYSTEM_SEPARATOR = File.separatorChar;
     private static final String ROOT_PATH = Environment.getExternalStorageDirectory() + File.separator;
-    private static final String APP_PATH = ROOT_PATH + "MyDemo" + File.separator;
+    private static final String APP_PATH = ROOT_PATH + "chen" + File.separator;
     private static final String IMG_PATH = APP_PATH + "img" + File.separator;
     private static final String COIN_PATH = APP_PATH + "coin" + File.separator;
     private static final String VIDEO_PATH = APP_PATH + "video" + File.separator;
@@ -32,6 +32,7 @@ public class ExternalFileUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        getSaveDir(APP_PATH);
         getCacheImgPath();
         getCrashPath();
         getVideoPath();

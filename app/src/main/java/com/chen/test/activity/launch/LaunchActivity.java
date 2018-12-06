@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.chen.common.util.ToastUtil;
 import com.chen.test.R;
 import com.chen.test.activity.camera.CameraPreviewFragment;
 import com.chen.test.activity.contacts.ContactsFragment;
@@ -47,7 +48,15 @@ public class LaunchActivity extends BaseActivity {
     }
 
     protected void initView() {
-        LaunchActivityPermissionsDispatcher.showCameraWithPermissionCheck(this);
+        if (!PermissionUtils.hasSelfPermissions(this, Manifest.permission.CAMERA)) {
+            LaunchActivityPermissionsDispatcher.showCameraWithPermissionCheck(this);
+        }
+        if (!PermissionUtils.hasSelfPermissions(this, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
+            LaunchActivityPermissionsDispatcher.showContactsWithPermissionCheck(this);
+        }
+        if (!PermissionUtils.hasSelfPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            LaunchActivityPermissionsDispatcher.showStorageWithPermissionCheck(this);
+        }
         replaceFragment(LaunchFragment.newInstance(), "launch");
     }
 
@@ -68,6 +77,8 @@ public class LaunchActivity extends BaseActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         // NOTE: delegate the permission handling to generated method
         LaunchActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+        PermissionUtils.hasSelfPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        PermissionUtils.hasSelfPermissions(this, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS);
         PermissionUtils.hasSelfPermissions(this, Manifest.permission.CAMERA);
     }
 
@@ -107,18 +118,42 @@ public class LaunchActivity extends BaseActivity {
     void onContactsDenied() {
         // NOTE: Deal with a denied permission, e.g. by showing specific UI
         // or disabling certain functionality
-        Toast.makeText(this, R.string.permission_camera_denied, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.permission_contacts_denied, Toast.LENGTH_SHORT).show();
     }
 
     @OnShowRationale({Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS})
     void showRationaleForContact(PermissionRequest request) {
         // NOTE: Show a rationale to explain why the permission is needed, e.g. with a dialog.
         // Call proceed() or cancel() on the provided PermissionRequest to continue or abort
-        showRationaleDialog(R.string.permission_camera_rationale, request);
+        showRationaleDialog(R.string.permission_contacts_rationale, request);
     }
 
     @OnNeverAskAgain({Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS})
     void onContactsNeverAskAgain() {
-        Toast.makeText(this, R.string.permission_camera_neverask, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.permission_contacts_never_ask_again, Toast.LENGTH_SHORT).show();
+    }
+
+    @NeedsPermission({Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void showStorage() {
+        ToastUtil.showMsg("存储权限已获取");
+    }
+
+    @OnPermissionDenied({Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void onStorageDenied() {
+        // NOTE: Deal with a denied permission, e.g. by showing specific UI
+        // or disabling certain functionality
+        Toast.makeText(this, R.string.permission_storage_denied, Toast.LENGTH_SHORT).show();
+    }
+
+    @OnShowRationale({Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void showRationaleForStorage(PermissionRequest request) {
+        // NOTE: Show a rationale to explain why the permission is needed, e.g. with a dialog.
+        // Call proceed() or cancel() on the provided PermissionRequest to continue or abort
+        showRationaleDialog(R.string.permission_storage_rationale, request);
+    }
+
+    @OnNeverAskAgain({Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void onStorageNeverAskAgain() {
+        Toast.makeText(this, R.string.permission_storage_neverask, Toast.LENGTH_SHORT).show();
     }
 }
