@@ -15,38 +15,38 @@
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/main_home_collapsing_toolbar_layout"
+                android:id="@+id/toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 app:contentScrim="#ff0"
+                app:expandedTitleMarginStart="@dimen/dp_50"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <TextView
-                    android:text="parallax"
-                    android:gravity="center"
-                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="?attr/colorPrimary"
-                    app:layout_collapseMode="parallax"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-                <TextView
-                    android:text="pin"
                     android:gravity="center"
-                    android:textColor="#f00"
-                    android:background="#0000"
-                    app:layout_collapseMode="pin"
+                    android:text="parallax"
+                    android:textColor="@color/white"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7"/>
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"/>
             </android.support.design.widget.CollapsingToolbarLayout>
 
             <!--layout_scrollFlags是否试着snap都一样-->
+            <!--snap无效，前面已有一个child-->
             <TextView
-                android:text="snap"
-                android:gravity="center"
-                app:layout_scrollFlags="snap"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="snap"
+                app:layout_scrollFlags="snap"/>
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout

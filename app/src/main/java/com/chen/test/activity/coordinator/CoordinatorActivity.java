@@ -46,6 +46,7 @@ public class CoordinatorActivity extends BaseActivity implements BaseQuickAdapte
         mBinding.menu.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mBinding.menu.setAdapter(mAdapter);
         mAdapter.setNewData(getData());
+        loadFragment(0);
     }
 
     private List<String> getData() {

@@ -1,6 +1,7 @@
 package com.chen.test.activity.coordinator;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -81,6 +82,11 @@ public class CoordinatorFragment1 extends BaseFragment implements SwipeRefreshLa
         mBinding.list.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 //        test1();
+
+        mBinding.toolbarLayout.setTitle("CollapsingToolbarLayout");
+        //通过CollapsingToolbarLayout修改字体颜色
+        mBinding.toolbarLayout.setExpandedTitleColor(Color.WHITE);//设置还没收缩时状态下字体颜色
+        mBinding.toolbarLayout.setCollapsedTitleTextColor(Color.GREEN);//设置收缩后Toolbar上字体的颜色
     }
 
 
