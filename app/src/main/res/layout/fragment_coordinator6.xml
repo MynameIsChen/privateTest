@@ -41,7 +41,7 @@
                     android:layout_height="150dp"
                     android:background="@color/blue"
                     android:gravity="center"
-                    android:text="head"
+                    android:text="微博样式"
                     android:textColor="@color/white"/>
             </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -62,7 +62,7 @@
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="back"
+                        android:text="返回"
                         android:textColor="@color/black"
                         android:visibility="invisible"/>
 
@@ -71,7 +71,7 @@
                         android:layout_height="@dimen/dp_50"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="tab"
+                        android:text="多个选项"
                         android:textColor="@color/black"/>
                 </LinearLayout>
 
@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center"
-                    android:text="add"
+                    android:text="多个tags"
                     android:textColor="@color/black"
                     android:visibility="gone"/>
             </LinearLayout>
