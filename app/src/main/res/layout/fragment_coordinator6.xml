@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:theme="@style/AppTheme.AppBarOverlay">
+            <!--https://www.jianshu.com/p/7caa5f4f49bd-->
+            <!--scroll-->
+            <!--Child View 伴随着滚动事件而滚出或滚进屏幕-->
+
+            <!--scroll|enterAlways-->
+            <!--快速返回模式。其实就是向下滚动时Scrolling View和Child View之间的滚动优先级问题。对比scroll和scroll | enterAlways设置，发生向下滚动事件时，前者优先滚动Scrolling View，后者优先滚动Child View，当优先滚动的一方已经全部滚进屏幕之后，另一方才开始滚动-->
+
+            <!--scroll|enterAlways|enterAlwaysCollapsed-->
+            <!--enterAlways的附加值。这里涉及到Child View的高度和最小高度，向下滚动时，Child View先向下滚动最小高度值，然后Scrolling View开始滚动，到达边界时，Child View再向下滚动，直至显示完全-->
+
+            <!--scroll|exitUntilCollapsed-->
+            <!--涉及到最小高度。发生向上滚动事件时，Child View向上滚动退出直至最小高度，然后Scrolling View开始滚动。也就是，Child View不会完全退出屏幕-->
+
+            <!--scroll|snap-->
+            <!--Child View滚动比例的一个吸附效果。也就是说，Child View不会存在局部显示的情况，滚动Child View的部分高度，当我们松开手指时，Child View要么向上全部滚出屏幕，要么向下全部滚进屏幕，有点类似ViewPager的左右滑动-->
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll">
+
+                <TextView
+                    android:id="@+id/head"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/blue"
+                    android:gravity="center"
+                    android:text="head"
+                    android:textColor="@color/white"/>
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                app:layout_collapseMode="pin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/back"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="back"
+                        android:textColor="@color/black"
+                        android:visibility="invisible"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="tab"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/add"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="add"
+                    android:textColor="@color/black"
+                    android:visibility="gone"/>
+            </LinearLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.chen.test.behavior.WebListBehavior"/>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

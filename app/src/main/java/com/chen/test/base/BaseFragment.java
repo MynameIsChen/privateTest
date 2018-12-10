@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.Unbinder;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -17,6 +19,9 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 public class BaseFragment extends SupportFragment {
     protected Unbinder mUnbinder;
+    public String TAG = this.getClass().getSimpleName();
+
+    private CompositeDisposable mCompositeDisposable;
 
     @Nullable
     @Override
@@ -32,6 +37,11 @@ public class BaseFragment extends SupportFragment {
 
     protected void initView() {
 
+    }
+
+    protected void addDisposable(Disposable d) {
+        if (mCompositeDisposable == null) mCompositeDisposable = new CompositeDisposable();
+        mCompositeDisposable.add(d);
     }
 
     @Override

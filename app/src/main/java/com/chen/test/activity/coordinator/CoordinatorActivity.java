@@ -32,6 +32,7 @@ public class CoordinatorActivity extends BaseActivity implements BaseQuickAdapte
     private CoordinatorFragment3 mFragment3;
     private CoordinatorFragment4 mFragment4;
     private CoordinatorFragment5 mFragment5;
+    private CoordinatorFragment6 mFragment6;
 
     public static void launch(Activity activity) {
         activity.startActivity(new Intent(activity, CoordinatorActivity.class));
@@ -56,6 +57,7 @@ public class CoordinatorActivity extends BaseActivity implements BaseQuickAdapte
         data.add("Fragment3");
         data.add("Fragment4");
         data.add("Fragment5");
+        data.add("Fragment6");
         return data;
     }
 
@@ -96,6 +98,12 @@ public class CoordinatorActivity extends BaseActivity implements BaseQuickAdapte
                 addFragment(mFragment5);
             }
             return mFragment5;
+        } else if (index == 5) {
+            if (mFragment6 == null) {
+                mFragment6 = CoordinatorFragment6.newInstance();
+                addFragment(mFragment6);
+            }
+            return mFragment6;
         }
 
         return null;

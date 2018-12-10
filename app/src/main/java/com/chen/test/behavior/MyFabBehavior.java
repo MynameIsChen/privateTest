@@ -19,9 +19,11 @@ import com.chen.common.util.Lg;
  */
 
 public class MyFabBehavior extends CoordinatorLayout.Behavior<View> {
+    private static final String TAG = "MyFabBehavior";
     private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
 
     private float viewY;//控件距离coordinatorLayout底部距离
+    private float top;
     private boolean isAnimate;//动画是否在进行
 
     public MyFabBehavior(Context context, AttributeSet attrs) {
@@ -30,8 +32,9 @@ public class MyFabBehavior extends CoordinatorLayout.Behavior<View> {
 
     //在嵌套滑动开始前回调
     @Override
-    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
+    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes, int type) {
 
+        Lg.d(TAG, "onStartNestedScroll: nestedScrollAxes=" + nestedScrollAxes + "=type=" + type);
         if (child.getVisibility() == View.VISIBLE && viewY == 0) {
             //获取控件距离父布局（coordinatorLayout）底部距离
             viewY = coordinatorLayout.getHeight() - child.getY();
@@ -42,9 +45,9 @@ public class MyFabBehavior extends CoordinatorLayout.Behavior<View> {
 
     //在嵌套滑动进行时，对象消费滚动距离前回调
     @Override
-    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dx, int dy, int[] consumed) {
+    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dx, int dy, int[] consumed, int type) {
         //dy大于0是向上滚动 小于0是向下滚动
-
+        Lg.d(TAG, "onNestedPreScroll: dy=" + dy + "=dx=" + dx + "=type=" + type);
 //        if (dy >= 0 && !isAnimate && child.getVisibility() == View.VISIBLE) {
 //            hide(child);
 //        } else if (dy < 0 && !isAnimate && child.getVisibility() == View.GONE) {
@@ -57,8 +60,6 @@ public class MyFabBehavior extends CoordinatorLayout.Behavior<View> {
         return dependency instanceof AppBarLayout;
     }
 
-    private float top;
-
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
         float translationY = dependency.getTop();//获取更随布局的顶部位置
@@ -69,7 +70,7 @@ public class MyFabBehavior extends CoordinatorLayout.Behavior<View> {
             //向下
             hide(child);
         }
-        Lg.d("onDependentViewChanged", "y=" + translationY + "=ScrollY=" + dependency.getScrollY()
+        Lg.d(TAG, "onDependentViewChanged: y=" + translationY + "=ScrollY=" + dependency.getScrollY()
                 + "=Y=" + dependency.getY() + "=TranslationY=" + dependency.getTranslationY() + "=PivotY=" + dependency.getPivotY()
                 + "=RotationY=" + dependency.getRotationY());
 //
